@@ -127,7 +127,36 @@ class BinarySearchTree:
         while stack2:
             current = stack2.pop()
             print(current.val)
+    
+    def find_height_recursive(self, node):
+        if node is None:
+            return -1
+        
+        left_subtree = self.find_height_recursive(node.left)
+        right_subtree = self.find_height_recursive(node.right)
 
+        return max(left_subtree, right_subtree) + 1
+    
+    def find_height_iterative(self, node):
+        if not node:
+            return -1
+        
+        stack = [(self.root, 0)]
+        max_height = 0 
+
+        while stack:
+
+            current_node, current_height = stack.pop()
+
+            max_height = max(max_height, current_height)
+
+            if  current_node.left:
+                stack.append(current_node.left, current_height + 1)
+
+            if current_node.right:
+                stack.append(current_node.right, current_height + 1)
+
+        return max_height
         
 
         
