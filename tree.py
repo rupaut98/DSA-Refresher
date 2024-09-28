@@ -106,6 +106,27 @@ class BinarySearchTree:
             if current.left:
                 stack.append(current.left)
 
+    def post_order_traversal_iterative(self, node):
+        if node is None:
+            return
+        
+        stack1 = [node]
+        stack2 = []
+
+        while stack1:
+            current = stack1.pop()
+
+            stack2.append(current)
+
+            if current.left:
+                stack1.append(current.left)
+
+            if current.right:
+                stack1.append(current.right)
+
+        while stack2:
+            current = stack2.pop()
+            print(current.val)
 
         
 
