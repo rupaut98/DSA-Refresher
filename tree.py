@@ -189,7 +189,30 @@ class BinarySearchTree:
         elif node.val > val:
             return self.find_depth_recursive(node.left, depth + 1, val) if node.left else -1
         
-    
+    def find_diameter(self):
+        max_diameter = 0
+
+        def calculate_height(node):
+            if node is None:
+                return 0 
+            
+            left_height = calculate_height(node.left)
+            right_height = calculate_height(node.right)
+
+            current_diameter = left_height + right_height
+
+            max_diameter = max(max_diameter, current_diameter)
+
+            return max(left_height, right_height) + 1
+        
+        calculate_height(self.root)
+
+        return max_diameter
+
+        
+        
+
+
         
 
         
