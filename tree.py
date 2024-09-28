@@ -157,6 +157,41 @@ class BinarySearchTree:
                 stack.append(current_node.right, current_height + 1)
 
         return max_height
+    
+    def find_depth(self, node, val):
+        if not node:
+            return -1
+        
+        stack = [(node,0)]
+
+        while stack:
+            current_node, current_depth = stack.pop()
+
+            if current_node.val == val:
+                return current_depth
+            
+            if current_node.val < val and current_node.right:
+                stack.append((current_node.right, current_depth + 1))
+
+            elif current_node.val > val and current_node.left:
+                stack.append((current_node.left, current_depth + 1))    
+
+    def find_depth_recursive(self, node, depth, val):
+        if not node:
+            return -1
+
+        if node.val == val:
+            return depth
+        
+        if node.val < val:
+            return self.find_depth_recursive(node.right, depth + 1, val) if node.right else - 1
+        
+        elif node.val > val:
+            return self.find_depth_recursive(node.left, depth + 1, val) if node.left else -1
+        
+    
+        
+
         
 
         
