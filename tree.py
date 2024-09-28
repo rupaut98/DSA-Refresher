@@ -93,10 +93,19 @@ class BinarySearchTree:
     # 3   7     20
 
     def pre_order_traversal_iterative(self, node):
-        stack = [node.val]
-        current = node
+        stack = [node]
 
-        while current or stack:
+        while stack:
+            current = stack.pop()
+
+            print(current.val)
+
+            if current.right:
+                stack.append(current.right)
+
+            if current.left:
+                stack.append(current.left)
+
 
         
 
