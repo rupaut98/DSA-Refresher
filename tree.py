@@ -93,18 +93,18 @@ class BinarySearchTree:
     # 3   7     20
 
     def pre_order_traversal_iterative(self, node):
-        stack = [node]
+        stack = [node]  #[10]
 
         while stack:
-            current = stack.pop()
+            current = stack.pop() #current = 10 # current = 5
 
             print(current.val)
 
-            if current.right:
+            if current.right: #stack = [15] #stack = [15, 7]
                 stack.append(current.right)
 
             if current.left:
-                stack.append(current.left)
+                stack.append(current.left) #stack = [15, 5] #stack = [15,7,3]
 
     def post_order_traversal_iterative(self, node):
         if node is None:
@@ -128,6 +128,12 @@ class BinarySearchTree:
             current = stack2.pop()
             print(current.val)
     
+
+    #     10
+    #    /  \
+    #   5    15
+    #  / \     \
+    # 3   7     20
     def find_height_recursive(self, node):
         if node is None:
             return -1
@@ -158,6 +164,32 @@ class BinarySearchTree:
 
         return max_height
     
+     #     10
+    #    /  \
+    #   5    15
+    #  / \     \
+    # 3   7     20
+    def find_height_iterative(self, node):
+        if not node:
+            return -1
+
+        stack = [(self.root, 0)]
+        max_height = 0
+
+        while stack:
+            current_node, current_height = stack.pop()
+
+            max_height = max(current_height, max_height)
+
+            if current_node.left:
+                stack.append(current_node.left, current_height.height)
+
+            if current_node.right:
+                stack.append(current_node.right, current_height + 1)
+
+        return max_height
+
+
     def find_depth(self, node, val):
         if not node:
             return -1
