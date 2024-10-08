@@ -28,4 +28,35 @@ def reverse_string(n):
         return n
     
     return reverse_string(n[1:]) + n[0]
+
+def sum_numbers(n):
+    if n < 10:
+        return n
+    
+    return n % 10 + sum_numbers(n // 10)
+
+def count_occurences(number, digit):
+    if number == 0:
+        return 0
+        
+    if number % 10 == digit:
+        return 1 + count_occurences(number // 10, digit)
+    else:
+        return count_occurences(number // 10, digit)
+    
+
+def find_max(arr):
+    if len(arr) == 1:
+        return arr[0]
+    
+    rest_max = find_max(arr[1:])
+
+    if arr[0] > rest_max:
+        return arr[0]
+    else:
+        return rest_max
+    
+    
+
+
     
