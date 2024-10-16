@@ -96,6 +96,48 @@ def sum_target(arr, target):
 
     return False
 
+def count_paths(i, j, m, n):
+    if i == m-1 and j == n-1:
+        return 1
+    if i > m-1 or j > n-1:
+        return 0
+    
+    return count_paths(i, j + 1, m, n) + count_paths(i + 1, j, m, n)
+
+def maze_paths(i, j, m, n, maze):
+    if i == m-1 and j==n-1:
+        return 1
+    if i > m-1 or j > n-1 or maze[i][j] == 1:
+        return 0
+    
+    maze[i][j] = 1
+
+    paths = 0
+
+    paths += maze_paths(i, j+1, m, n, maze)
+    paths += maze_paths(i+1, j, m, n, maze)
+    paths += maze_paths(i-1, j, m, n, maze)
+    paths += maze_paths(i, j-1, m, n, maze)
+
+    maze[i][j] = 0
+
+    return paths
+
+
+
+
+
+
+
+
+    
+
+
+        
+
+        
+
+
 
 
         
