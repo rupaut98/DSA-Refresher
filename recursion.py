@@ -73,5 +73,32 @@ def permutation_string(s):
         
     return permutations
 
+def sum_target(arr, target):
+    if target == 0:
+        return True
+    
+    if target < 0:
+        return False
+    
+    for i in range(len(arr)):
+        num = arr[i]
+        target_dup = target
+
+        if num <= target_dup:
+            target_dup -= num
+            found = sum_target(arr[i+1:], target_dup)
+            if found:
+                return True
+            
+        found = sum_target(arr[i+1:], target_dup)
+        if found:
+            return True
+
+    return False
+
+
+
+        
+
 
     
