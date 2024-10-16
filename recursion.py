@@ -56,7 +56,22 @@ def find_max(arr):
     else:
         return rest_max
     
+def permutation_string(s):
+    if len(s) == 1:
+        return [s]
     
+    permutations = []
+
+    for i in range(len(s)):
+        char = s[i]
+        remaining_string = s[:i] + s[i+1:]
+
+        remaining_permutations = permutation_string(remaining_string)
+
+        for perm in remaining_permutations:
+            permutations.append(char + perm)
+        
+    return permutations
 
 
     
