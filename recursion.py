@@ -149,6 +149,39 @@ def explore_island(m, n, i, j, grid):
     explore_island(m, n, i, j-1, grid)
 
 
+def distinct_shape_islands(m, n, grid):
+    set_shapes = set()
+
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j]==1:
+                island_shape=set()
+                i_start, j_start = i, j
+                recursive_exploration(m, n, i, j, grid, island_shape, i_start, j_start)
+                set_shapes.add(frozenset(island_shape))
+
+    return len(set_shapes)
+
+
+def recursive_exploration(m, n, i, j, grid, island_shape, i_start, j_start):
+    if i > m-1 or j>n-1 or i<0 or j<0:
+        return
+    if grid[i][j]==0:
+        return
+
+    relative_position = (i - i_start, j - j_start)
+    island_shape.add(relative_position)
+
+    recursive_exploration(m, n, i+1, j, grid, island_shape, i_start, j_start)
+    recursive_exploration(m, n, i-1, j, grid, island_shape, i_start, j_start)
+    recursive_exploration(m, n, i, j+1, grid, island_shape, i_start, j_start)
+    recursive_exploration(m, n, i, j-1, grid, island_shape, i_start, j_start)
+
+
+
+
+
+
 
     
 
