@@ -125,8 +125,28 @@ def maze_paths(i, j, m, n, maze):
 
 
 
+def count_islands(m, n, grid):
+    islands = 0
 
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                explore_island(m, n, i, j, grid)
+                islands += 1
+    return islands
 
+def explore_island(m, n, i, j, grid):
+    if i > m-1 or j > n-1 or i < 0 or j < 0:
+        return
+    if grid[i][j] == 0:
+        return
+    
+    grid[i][j] = 0
+
+    explore_island(m, n, i+1,j, grid)
+    explore_island(m, n, i-1,j, grid)
+    explore_island(m, n, i,j+1, grid)
+    explore_island(m, n, i, j-1, grid)
 
 
 
